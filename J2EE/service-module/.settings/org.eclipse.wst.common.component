@@ -7,6 +7,12 @@
         <dependent-module archiveName="dal-module-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dal-module/dal-module">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="bus-module-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/bus-module/bus-module">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="common-module-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/common-module/common-module">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="service-module"/>
         <property name="java-output-path" value="/service-module/target/classes"/>
     </wb-module>

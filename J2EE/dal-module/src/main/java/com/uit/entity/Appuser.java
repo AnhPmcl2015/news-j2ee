@@ -100,7 +100,7 @@ public class Appuser implements java.io.Serializable {
 		this.fullname = fullname;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "appuser")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "appuser")
 	public Set<News> getNewses() {
 		return this.newses;
 	}
@@ -109,7 +109,7 @@ public class Appuser implements java.io.Serializable {
 		this.newses = newses;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "appuser")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "appuser")
 	public Set<UserRole> getUserRoles() {
 		return this.userRoles;
 	}

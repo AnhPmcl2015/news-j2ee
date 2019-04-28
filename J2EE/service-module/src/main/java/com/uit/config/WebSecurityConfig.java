@@ -11,11 +11,17 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.uit.define.impl.UserDetailsServiceImpl;
+
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	DataSource dataSource;
+	
+	@Autowired
+	private UserDetailsServiceImpl userDetailsService;
 	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -24,22 +30,38 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) {
-		 //auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		 auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-		
-		// Các trang không yêu cầu login
-		http.authorizeRequests().antMatchers("/news/*", "/login").permitAll();
-		
-		// trang admin yêu cầu phải login với vai trò Admin
-		// Nếu chưa login thì redirect về trang /admin/login
-		http.authorizeRequests().antMatchers("/admin/*").access("hasAnyRole('ADMIN')");
-		
-		
+		 
+        // Các trang không yêu cầu login
+        http.authorizeRequests().antMatchers("/tin-tuc", "/login", "/logout").permitAll();
+
+ 
+        // Trang chỉ dành cho ADMIN
+        http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
+ 
+        // Khi người dùng đã login, với vai trò XX.
+        // Nhưng truy cập vào trang yêu cầu vai trò YY,
+        // Ngoại lệ AccessDeniedException sẽ ném ra.
+        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
+ 
+        // Cấu hình cho Login Form.
+        http.authorizeRequests().and().formLogin()//
+                // Submit URL của trang login
+                .loginProcessingUrl("/j_spring_security_check") // Submit URL
+                .loginPage("/login")//
+                .defaultSuccessUrl("/userInfo")//
+                .failureUrl("/login?error=true")//
+                .usernameParameter("username")//
+                .passwordParameter("password")
+                // Cấu hình cho Logout Page.
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login");
+			
 	}
 	
 }

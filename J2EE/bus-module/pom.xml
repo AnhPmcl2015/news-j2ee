@@ -6,4 +6,12 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>bus-module</artifactId>
+  
+  <dependencies>
+		<dependency>
+			<groupId>com.uit</groupId>
+			<artifactId>dal-module</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>

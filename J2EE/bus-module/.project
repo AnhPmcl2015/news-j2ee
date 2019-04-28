@@ -3,6 +3,7 @@
 	<name>bus-module</name>
 	<comment></comment>
 	<projects>
+		<project>dal-module</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

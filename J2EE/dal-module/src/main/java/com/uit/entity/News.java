@@ -64,7 +64,7 @@ public class News implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	public Appuser getAppuser() {
 		return this.appuser;
@@ -74,7 +74,7 @@ public class News implements java.io.Serializable {
 		this.appuser = appuser;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "category_id")
 	public Category getCategory() {
 		return this.category;
