@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.uit.define.IAppUserDao;
-import com.uit.entity.Appuser;
+import com.uit.entity.AppUser;
 import com.uit.repository.AppUserRepository;
 
 @Repository
@@ -16,8 +16,8 @@ public class AppUserDaoImpl implements IAppUserDao{
 	private AppUserRepository repository;
 	
 	@Override
-	public Appuser findAppUserByUsername(String username) {
-		Optional<Appuser> optAppUser = this.repository.findByUserName(username);
+	public AppUser findAppUserByUsername(String username) {
+		Optional<AppUser> optAppUser = this.repository.findByUsername(username);
 		
 		if(optAppUser.isPresent()) {
 			return optAppUser.get();

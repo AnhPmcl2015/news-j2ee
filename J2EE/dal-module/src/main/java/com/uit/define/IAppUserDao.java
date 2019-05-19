@@ -1,7 +1,7 @@
 package com.uit.define;
 
-import com.uit.entity.Appuser;
+import com.uit.entity.AppUser;
 
 public interface IAppUserDao {
-	Appuser findAppUserByUsername(String username);
+	AppUser findAppUserByUsername(String username);
 }
