@@ -29,7 +29,7 @@ tag_name nvarchar(20) not null unique
 
 create table news(
 news_id varchar(14) primary key default '20190101115530',
-summary nvarchar(150) not null,
+summary text not null,
 thumpnail varchar(200) not null default 'http://localhost:8080/img/default-thumpnail.jpg',
 content text not null,
 author_id int not null,

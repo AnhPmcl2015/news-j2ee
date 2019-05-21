@@ -1,6 +1,7 @@
 package com.uit.entity;
 // Generated May 20, 2019 1:05:38 AM by Hibernate Tools 4.3.1.Final
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,15 +33,28 @@ public class AppUser implements java.io.Serializable {
 	private Integer userId;
 	private AppRole appRole;
 	private String username;
-	private Date createdDate;
+	private LocalDate createdDate;
 	private String userPassword;
 	private String fullname;
-	private Date editTime;
+	private LocalDate editTime;
 	private Set<News> newsesForAuthorId = new HashSet<News>(0);
 	private Set<News> newsesForAcceptanceUserId = new HashSet<News>(0);
 
 	public AppUser() {
 	}
+
+	public AppUser(AppRole appRole, String username, LocalDate createdDate, String userPassword, String fullname,
+			LocalDate editTime) {
+		super();
+		this.appRole = appRole;
+		this.username = username;
+		this.createdDate = createdDate;
+		this.userPassword = userPassword;
+		this.fullname = fullname;
+		this.editTime = editTime;
+	}
+
+
 
 	public AppUser(AppRole appRole, String username, String userPassword) {
 		this.appRole = appRole;
@@ -48,8 +62,8 @@ public class AppUser implements java.io.Serializable {
 		this.userPassword = userPassword;
 	}
 
-	public AppUser(AppRole appRole, String username, Date createdDate, String userPassword, String fullname,
-			Date editTime, Set<News> newsesForAuthorId, Set<News> newsesForAcceptanceUserId) {
+	public AppUser(AppRole appRole, String username, LocalDate createdDate, String userPassword, String fullname,
+			LocalDate editTime, Set<News> newsesForAuthorId, Set<News> newsesForAcceptanceUserId) {
 		this.appRole = appRole;
 		this.username = username;
 		this.createdDate = createdDate;
@@ -91,13 +105,12 @@ public class AppUser implements java.io.Serializable {
 		this.username = username;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_date", length = 19)
-	public Date getCreatedDate() {
+	public LocalDate getCreatedDate() {
 		return this.createdDate;
 	}
 
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(LocalDate createdDate) {
 		this.createdDate = createdDate;
 	}
 
@@ -119,13 +132,12 @@ public class AppUser implements java.io.Serializable {
 		this.fullname = fullname;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "edit_time", length = 19)
-	public Date getEditTime() {
+	public LocalDate getEditTime() {
 		return this.editTime;
 	}
 
-	public void setEditTime(Date editTime) {
+	public void setEditTime(LocalDate editTime) {
 		this.editTime = editTime;
 	}
 

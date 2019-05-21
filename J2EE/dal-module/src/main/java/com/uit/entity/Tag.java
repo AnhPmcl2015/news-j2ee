@@ -3,9 +3,12 @@ package com.uit.entity;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -30,6 +33,15 @@ public class Tag implements java.io.Serializable {
 
 	public Tag() {
 	}
+	
+	
+
+	public Tag(String tagName) {
+		super();
+		this.tagName = tagName;
+	}
+
+
 
 	public Tag(int tagId, String tagName) {
 		this.tagId = tagId;
@@ -43,7 +55,7 @@ public class Tag implements java.io.Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue
 	@Column(name = "tag_id", unique = true, nullable = false)
 	public int getTagId() {
 		return this.tagId;
@@ -62,10 +74,7 @@ public class Tag implements java.io.Serializable {
 		this.tagName = tagName;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "tag_news", catalog = "news_database", joinColumns = {
-			@JoinColumn(name = "tag_id", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "news_id", nullable = false, updatable = false) })
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
 	public Set<News> getNewses() {
 		return this.newses;
 	}

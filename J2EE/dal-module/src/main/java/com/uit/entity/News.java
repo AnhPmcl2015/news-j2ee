@@ -3,11 +3,14 @@ package com.uit.entity;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -95,7 +98,7 @@ public class News implements java.io.Serializable {
 		this.appUserByAcceptanceUserId = appUserByAcceptanceUserId;
 	}
 
-	@Column(name = "summary", nullable = false, length = 150)
+	@Column(name = "summary", nullable = false)
 	public String getSummary() {
 		return this.summary;
 	}
@@ -131,7 +134,11 @@ public class News implements java.io.Serializable {
 		this.priorityId = priorityId;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "newses")
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "tag_news", catalog = "news_database", joinColumns = {
+			@JoinColumn(name = "news_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "tag_id", nullable = false, updatable = false) })
 	public Set<Tag> getTags() {
 		return this.tags;
 	}

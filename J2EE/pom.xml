@@ -8,7 +8,6 @@
 	<packaging>pom</packaging>
 	<name>J2EE</name>
 	<modules>
-		<module>web-module</module>
 		<module>service-module</module>
 		<module>bus-module</module>
 		<module>dal-module</module>

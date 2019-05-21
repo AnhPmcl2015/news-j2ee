@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,6 +29,23 @@ public class AppRole implements java.io.Serializable {
 
 	public AppRole() {
 	}
+	
+	
+	
+	public AppRole(String roleName) {
+		super();
+		this.roleName = roleName;
+	}
+
+
+
+	public AppRole(String roleName, Set<AppUser> appUsers) {
+		super();
+		this.roleName = roleName;
+		this.appUsers = appUsers;
+	}
+
+
 
 	public AppRole(int roleId, String roleName) {
 		this.roleId = roleId;
@@ -41,7 +59,7 @@ public class AppRole implements java.io.Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue
 	@Column(name = "role_id", unique = true, nullable = false)
 	public int getRoleId() {
 		return this.roleId;
@@ -51,7 +69,7 @@ public class AppRole implements java.io.Serializable {
 		this.roleId = roleId;
 	}
 
-	@Column(name = "role_name", unique = true, nullable = false, length = 10)
+	@Column(name = "role_name", unique = true, nullable = false, length = 50)
 	public String getRoleName() {
 		return this.roleName;
 	}

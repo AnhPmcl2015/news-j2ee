@@ -26,4 +26,31 @@ public class AppUserDaoImpl implements IAppUserDao{
 		return null;
 	}
 
+	@Override
+	public void insertOrUpdate(AppUser appUser) {
+		this.repository.saveAndFlush(appUser);
+	}
+
+	@Override
+	public void delete(AppUser appUser) {
+		this.repository.delete(appUser);
+	}
+
+	@Override
+	public AppUser findById(Integer id) {
+		Optional<AppUser> appUserOpt = this.repository.findById(id);
+		
+		if(appUserOpt.isPresent()) {
+			return appUserOpt.get();
+		}
+		return null;
+	}
+
+	@Override
+	public long count() {
+		return this.repository.count();
+	}
+
+
+
 }
