@@ -1,5 +1,5 @@
 package com.uit.common.base;
 
 public interface IDtoToEntity<E,D> {
-	void convertDtosToEntity(E entity, @SuppressWarnings("unchecked") D...dtos);
+	void convertDtosToEntity(E entity, D dto);
 }

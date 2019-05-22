@@ -1,6 +1,9 @@
 package com.uit.define.impl;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,6 +41,11 @@ public class TagDaoImpl implements ITagDao{
 	@Override
 	public long count() {
 		return this.tagRepository.count();
+	}
+
+	@Override
+	public List<Tag> findAll() {
+		return this.tagRepository.findAll();
 	}
 
 }

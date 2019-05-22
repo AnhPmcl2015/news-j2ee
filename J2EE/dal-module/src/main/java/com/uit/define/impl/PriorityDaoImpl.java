@@ -1,6 +1,8 @@
 package com.uit.define.impl;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,6 +40,12 @@ public class PriorityDaoImpl implements IPriorityDao {
 	@Override
 	public long count() {
 		return this.priorityRepository.count();
+	}
+
+	@Override
+	public List<Priority> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

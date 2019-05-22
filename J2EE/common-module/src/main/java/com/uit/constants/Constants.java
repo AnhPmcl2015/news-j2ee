@@ -13,4 +13,8 @@ public final class Constants {
 	public static final int DOI_SONG = 4;
 	
 	public static final String defaultNewsId = "20190520000";
+	
+	public static int HIGHEST_PRIORITY = 2;
+	public static int MEDIUM_PRIORITY = 1;
+	public static int LOWEST_PRIORITY = 0;
 }

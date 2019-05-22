@@ -10,16 +10,16 @@ import com.uit.entity.News;
 public class InitialNewsDtoNewsConverter implements IDtoToEntity<News, InitialNewsDto>{
 
 	@Override
-	public void convertDtosToEntity(News entity, InitialNewsDto... dtos) {
-		if(entity == null || dtos.length < 0) {
+	public void convertDtosToEntity(News entity, InitialNewsDto dto) {
+		if(entity == null || dto == null) {
 			return;
 		}
 		
-		entity.setNewsId(dtos[0].getId());
-		entity.setTitle(dtos[0].getTitle());
-		entity.setSummary(dtos[0].getDescription());
-		entity.setThumpnail(dtos[0].getThumpnail());
-		entity.setContent(dtos[0].getContent());
+		entity.setNewsId(dto.getId());
+		entity.setTitle(dto.getTitle());
+		entity.setSummary(dto.getDescription());
+		entity.setThumpnail(dto.getThumpnail());
+		entity.setContent(dto.getContent());
 	}
 
 

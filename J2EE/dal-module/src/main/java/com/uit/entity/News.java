@@ -1,6 +1,7 @@
 package com.uit.entity;
 // Generated May 20, 2019 1:05:38 AM by Hibernate Tools 4.3.1.Final
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,7 +37,10 @@ public class News implements java.io.Serializable {
 	private int priorityId;
 	private int views;
 	private Set<Tag> tags = new HashSet<Tag>(0);
-
+	private boolean isTrending;
+	private boolean isDeleted;
+	private LocalDateTime editDate;
+	
 	public News() {
 	}
 
@@ -51,6 +55,23 @@ public class News implements java.io.Serializable {
 		this.content = content;
 		this.views = views;
 		this.priorityId = priorityId;
+	}
+
+	public News(String newsId, AppUser appUserByAuthorId, AppUser appUserByAcceptanceUserId, String title,
+			String summary, String thumpnail, String content, int priorityId, int views, Set<Tag> tags,
+			boolean isTrending) {
+		super();
+		this.newsId = newsId;
+		this.appUserByAuthorId = appUserByAuthorId;
+		this.appUserByAcceptanceUserId = appUserByAcceptanceUserId;
+		this.title = title;
+		this.summary = summary;
+		this.thumpnail = thumpnail;
+		this.content = content;
+		this.priorityId = priorityId;
+		this.views = views;
+		this.tags = tags;
+		this.isTrending = isTrending;
 	}
 
 	public News(String newsId, String title, AppUser appUserByAuthorId, AppUser appUserByAcceptanceUserId, String summary,
@@ -164,6 +185,34 @@ public class News implements java.io.Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+	@Column(name = "is_trending")
+	public boolean getIsTrending() {
+		return isTrending;
+	}
+
+	public void setIsTrending(boolean isTrending) {
+		this.isTrending = isTrending;
+	}
+
+	@Column (name = "is_deleted")
+	public boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+	@Column(name = "edit_date")
+	public LocalDateTime getEditDate() {
+		return editDate;
+	}
+
+	public void setEditDate(LocalDateTime editDate) {
+		this.editDate = editDate;
+	}
+	
 	
 	
 

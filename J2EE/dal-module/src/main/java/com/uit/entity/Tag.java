@@ -4,14 +4,11 @@ package com.uit.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -29,19 +26,23 @@ public class Tag implements java.io.Serializable {
 	private static final long serialVersionUID = 5060924809600759364L;
 	private int tagId;
 	private String tagName;
+	private String url;
 	private Set<News> newses = new HashSet<News>(0);
 
 	public Tag() {
 	}
-	
-	
+
+	public Tag(int tagId, String tagName, String url) {
+		super();
+		this.tagId = tagId;
+		this.tagName = tagName;
+		this.url = url;
+	}
 
 	public Tag(String tagName) {
 		super();
 		this.tagName = tagName;
 	}
-
-
 
 	public Tag(int tagId, String tagName) {
 		this.tagId = tagId;
@@ -81,6 +82,15 @@ public class Tag implements java.io.Serializable {
 
 	public void setNewses(Set<News> newses) {
 		this.newses = newses;
+	}
+
+	@Column(name = "url", nullable = false, length = 100)
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }

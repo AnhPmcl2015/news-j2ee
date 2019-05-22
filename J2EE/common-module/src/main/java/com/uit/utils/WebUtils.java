@@ -1,5 +1,7 @@
 package com.uit.utils;
 
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -26,5 +28,11 @@ public class WebUtils {
             sb.append(")");
         }
         return sb.toString();
+	}
+	
+	public static String convertTitleToUrl(String title) {
+		
+		return title == null ? "" :
+			Normalizer.normalize(title, Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 	}
 }

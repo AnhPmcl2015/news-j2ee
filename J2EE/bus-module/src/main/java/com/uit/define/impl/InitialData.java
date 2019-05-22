@@ -100,8 +100,6 @@ public class InitialData implements IInitialData {
 		
 		if(this.newsDaoImpl.count() > 0) {
 			logger.info("Newses were imported");
-			News news = this.newsDaoImpl.findById("20190520000000");
-			logger.info("news " + news.getTags().size());
 			return;
 		}
 		

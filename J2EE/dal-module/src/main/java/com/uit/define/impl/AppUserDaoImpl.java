@@ -1,6 +1,8 @@
 package com.uit.define.impl;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -49,6 +51,12 @@ public class AppUserDaoImpl implements IAppUserDao{
 	@Override
 	public long count() {
 		return this.repository.count();
+	}
+
+	@Override
+	public List<AppUser> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
