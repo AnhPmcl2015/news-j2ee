@@ -82,15 +82,26 @@ public class NewsDaoImpl implements INewsDao{
 
 	@Override
 	public List<News> getNewestNewses() {
-		List<News> news = this.newsRepository.findAllByIsDeletedFalseAndIsTrendingFalseAndPriorityIdOrderByNewsIdDesc(Constants.LOWEST_PRIORITY);
+		List<News> news = this.newsRepository.findNewestNews(15);
 		
-		return news.size() <= 10 ? news : news.subList(0, 10);
+		return news;
 	}
 
 	@Override
 	public List<News> getMostViewsNewses() {
-		List<News> news = this.newsRepository.findAllByIsTrendingFalseAndIsDeletedFalseAndPriorityIdOrderByViewsDesc(Constants.LOWEST_PRIORITY);
-		return news.size() <= 5 ? news : news.subList(0, 5);
+		List<News> news = this.newsRepository.findMostViewsNewses(12);
+		return news;
+	}
+
+	@Override
+	public List<News> getLastestModifiedNewses() {
+		return this.newsRepository.findLatestModifiedNewses(9);
+	}
+
+	@Override
+	public List<News> getAllNewsByTag(int limit, int page, String urlTag) {
+		
+		return this.newsRepository.findAllNewsByTag(limit, page, urlTag);
 	}
 
 }

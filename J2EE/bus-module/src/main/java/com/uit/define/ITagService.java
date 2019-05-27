@@ -8,4 +8,5 @@ import com.uit.entity.Tag;
 
 public interface ITagService extends IBaseBus<Tag>{
 	List<TagDto> findAllTagDto();
+	long count();
 }

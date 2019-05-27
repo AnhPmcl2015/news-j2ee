@@ -30,9 +30,9 @@ public class WebUtils {
         return sb.toString();
 	}
 	
-	public static String convertTitleToUrl(String title) {
+	public static String convertTitleToUrl(String title, String id) {
 		
 		return title == null ? "" :
-			Normalizer.normalize(title, Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+			Normalizer.normalize(title, Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "") + "-" + id;
 	}
 }

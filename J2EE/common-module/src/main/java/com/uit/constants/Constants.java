@@ -17,4 +17,6 @@ public final class Constants {
 	public static int HIGHEST_PRIORITY = 2;
 	public static int MEDIUM_PRIORITY = 1;
 	public static int LOWEST_PRIORITY = 0;
+	
+	public static double BLOG_PER_PAGE = 5.0;
 }

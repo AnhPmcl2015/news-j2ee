@@ -12,4 +12,6 @@ public interface INewsDao extends IBaseDao<News> {
 	List<News> getTrendingNewses();
 	List<News> getNewestNewses();
 	List<News> getMostViewsNewses();
+	List<News> getLastestModifiedNewses();
+	List<News> getAllNewsByTag(int limit, int page, String urlTag);
 }

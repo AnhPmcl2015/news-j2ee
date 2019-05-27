@@ -21,7 +21,7 @@ public class SimpleNewsDtoNewsConverter implements IEntityToDto<News, SimpleNews
 		dto.setThumpnail(entity.getThumpnail());
 		dto.setTitle(entity.getTitle());
 		dto.setDescription(entity.getSummary());
-		dto.setUrl(WebUtils.convertTitleToUrl(entity.getTitle()).replaceAll(" ", "-"));
+		dto.setUrl(WebUtils.convertTitleToUrl(entity.getTitle(), entity.getNewsId()).replaceAll(" ", "-"));
 		dto.setTag_url("");
 		dto.setErrorMessage("");
 	}

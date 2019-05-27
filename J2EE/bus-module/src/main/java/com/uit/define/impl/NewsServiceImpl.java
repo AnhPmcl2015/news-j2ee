@@ -3,22 +3,32 @@ package com.uit.define.impl;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uit.converter.SimpleNewsDtoNewsConverter;
+import com.uit.converter.SingleDtoNewsConverter;
 import com.uit.define.INewsDao;
 import com.uit.define.INewsService;
+import com.uit.define.ITagDao;
 import com.uit.dto.SimpleNewsDto;
+import com.uit.dto.SingleDto;
+import com.uit.entity.AppUser;
 import com.uit.entity.News;
+import com.uit.entity.Tag;
 
 @Service
 public class NewsServiceImpl implements INewsService{
 	
 	@Autowired INewsDao newsDao;
 	
+	@Autowired ITagDao tagDao;
+	
 	@Autowired SimpleNewsDtoNewsConverter simpleNewsDtoNewsConverter;
+	
+	@Autowired SingleDtoNewsConverter singleDtoNewsConverter;
 
 	@Override
 	public SimpleNewsDto getPriority2News() {
@@ -94,5 +104,41 @@ public class NewsServiceImpl implements INewsService{
 		
 	}
 
+	@Override
+	public List<SimpleNewsDto> getLastestModifiedNewses(int limit) {
+		List<News> newses = this.newsDao.getLastestModifiedNewses();
+		return this.convertNewsesToSimpleNewsDtos(newses);
+	}
 
+	@Override
+	public List<SimpleNewsDto> getAllNewsesByTag(int limit, int page, String tagUrl) {
+		List<News> newses = this.newsDao.getAllNewsByTag(limit, (page-1) * limit + 1, tagUrl);
+		return this.convertNewsesToSimpleNewsDtos(newses);
+	}
+
+	@Override
+	public long countByTagUrl(String tagUrl) {
+		Tag tag = this.tagDao.getTagByUrl(tagUrl);
+		
+		Set<News> newes = tag.getNewses();
+		return newes.size();
+	}
+
+	@Override
+	public SingleDto getSingleByNewsId(String newsId) {
+		News news = this.newsDao.findById(newsId);
+		return convertNewsToSingleDto(news);
+	}
+
+	@Override
+	public SingleDto convertNewsToSingleDto(News news) {
+		SingleDto dto = new SingleDto();
+		
+		this.singleDtoNewsConverter.convertEntityToDto(news, dto);
+		
+		AppUser appUser = news.getAppUserByAuthorId();
+		dto.setAuthor(appUser.getFullname());
+		
+		return dto;
+	}
 }

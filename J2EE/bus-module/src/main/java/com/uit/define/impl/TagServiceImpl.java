@@ -49,4 +49,9 @@ public class TagServiceImpl implements ITagService{
 		return results;
 	}
 
+	@Override
+	public long count() {
+		return this.tagDao.count();
+	}
+
 }
