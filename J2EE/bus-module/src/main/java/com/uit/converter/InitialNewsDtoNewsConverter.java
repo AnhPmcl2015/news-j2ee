@@ -19,7 +19,7 @@ public class InitialNewsDtoNewsConverter implements IDtoToEntity<News, InitialNe
 		entity.setTitle(dto.getTitle());
 		entity.setSummary(dto.getDescription());
 		entity.setThumpnail(dto.getThumpnail());
-		entity.setContent(dto.getContent());
+		entity.setContent(dto.getContent().replace("data-src", "src"));
 	}
 
 

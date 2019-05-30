@@ -11,18 +11,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Tin tức 24h, tin tức mới nhất, nhanh nhất</title>
-    <link href="../static/css/media_query.css" rel="stylesheet" type="text/css"/>
-    <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/static/css/media_query.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/static/css/bootstrap.css}" rel="stylesheet" type="text/css"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href="../static/css/animate.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/static/css/animate.css}" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    <link href="../static/css/owl.carousel.css" rel="stylesheet" type="text/css"/>
-    <link href="../static/css/owl.theme.default.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/static/css/owl.carousel.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/static/css/owl.theme.default.css}" rel="stylesheet" type="text/css"/>
     <!-- TODO:Bootstrap CSS -->
-    <link href="../static/css/style_1.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/static/css/style_1.css}" rel="stylesheet" type="text/css"/>
     <!-- TODO:Modernizr JS -->
-    <script src="../static/js/modernizr-3.5.0.min.js"></script>
+    <script th:src="@{/static/js/modernizr-3.5.0.min.js}"></script>
+
+    <style th:inline="text">
+        #fh5co-title-box{
+            background-image: url([[@{${singleDto.thumpnail}}]]); 
+            background-size: 100% 100%;
+        }
+
+        .story.story--left.clearfix{
+            display: none;
+        }
+    </style>
 </head>
 <body class="single">
 <div class="container-fluid fh5co_header_bg">
@@ -67,7 +78,7 @@
 </div>
 
 <!-- singleDto -->
-<div id="fh5co-title-box" style="background-image: url([[@{singleDto.thumpnail}]]); background-position: 50% 90.5px;" data-stellar-background-ratio="0.5">
+<div id="fh5co-title-box" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="page-title">
         <!-- <img src="images/person_1.jpg" alt="Free HTML5 by FreeHTMl5.co"> -->
@@ -232,7 +243,7 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="../static/js/owl.carousel.min.js"></script>
+<script th:src="@{/static/js/owl.carousel.min.js}"></script>
 <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
         integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
@@ -241,9 +252,9 @@
         integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
         crossorigin="anonymous"></script>
 <!-- Waypoints -->
-<script src="../static/js/jquery.waypoints.min.js"></script>
+<script th:src="@{/static/js/jquery.waypoints.min.js}"></script>
 <!-- Main -->
-<script src="../static/js/main.js"></script>
+<script th:src="@{/static/js/main.js}"></script>
 
 </body>
 </html>

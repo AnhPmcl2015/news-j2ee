@@ -34,7 +34,10 @@ thumpnail varchar(200) not null default 'http://localhost:8080/img/default-thump
 content text not null,
 author_id int not null,
 acceptance_user_id int not null,
-priority_id int not null default 0
+priority_id int not null default 0,
+edit_date datetime default current_timestamp,
+is_deleted bit(1) default 0,
+is_trending bit(1) default 0
 );
 
 create table tag_news(

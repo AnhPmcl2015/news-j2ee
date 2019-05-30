@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -74,15 +75,15 @@ public class InitialData implements IInitialData {
 			return;
 		}
 
-		Tag tag1 = new Tag("Công nghệ");
-		Tag tag2 = new Tag("Đời sống");
-		Tag tag3 = new Tag("Giáo dục");
-		Tag tag4 = new Tag("Giới trẻ");
-		Tag tag5 = new Tag("Sức khỏe");
-		Tag tag6 = new Tag("Tài chính kinh doanh");
-		Tag tag7 = new Tag("Thế giới");
-		Tag tag8 = new Tag("Thời sự");
-		Tag tag9 = new Tag("Văn hóa");
+		Tag tag1 = new Tag("Công nghệ", "cong-nghe");
+		Tag tag2 = new Tag("Đời sống", "doi-song");
+		Tag tag3 = new Tag("Giáo dục", "giao-duc");
+		Tag tag4 = new Tag("Giới trẻ", "gioi-tre");
+		Tag tag5 = new Tag("Sức khỏe", "suc-khoe");
+		Tag tag6 = new Tag("Tài chính kinh doanh", "tai-chinh-kinh-doanh");
+		Tag tag7 = new Tag("Thế giới", "the-gioi");
+		Tag tag8 = new Tag("Thời sự", "thoi-su");
+		Tag tag9 = new Tag("Văn hóa", "van-hoa");
 
 		this.tagDaoImpl.insertOrUpdate(tag1);
 		this.tagDaoImpl.insertOrUpdate(tag2);
@@ -238,6 +239,7 @@ public class InitialData implements IInitialData {
 			Set<Tag> tags = new HashSet<>();
 			tags.add(tag);
 			news.setTags(tags);
+			news.setEditDate(LocalDateTime.now());
 			
 			this.newsDaoImpl.insertOrUpdate(news);
 		}

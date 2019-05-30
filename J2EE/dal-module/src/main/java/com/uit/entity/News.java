@@ -56,6 +56,22 @@ public class News implements java.io.Serializable {
 		this.views = views;
 		this.priorityId = priorityId;
 	}
+	
+
+	public News(String newsId, AppUser appUserByAuthorId, AppUser appUserByAcceptanceUserId, String title,
+			String summary, String thumpnail, String content, int priorityId, int views, LocalDateTime editDate) {
+		super();
+		this.newsId = newsId;
+		this.appUserByAuthorId = appUserByAuthorId;
+		this.appUserByAcceptanceUserId = appUserByAcceptanceUserId;
+		this.title = title;
+		this.summary = summary;
+		this.thumpnail = thumpnail;
+		this.content = content;
+		this.priorityId = priorityId;
+		this.views = views;
+		this.editDate = editDate;
+	}
 
 	public News(String newsId, AppUser appUserByAuthorId, AppUser appUserByAcceptanceUserId, String title,
 			String summary, String thumpnail, String content, int priorityId, int views, Set<Tag> tags,

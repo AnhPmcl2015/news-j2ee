@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -44,6 +45,12 @@ public class Tag implements java.io.Serializable {
 		this.tagName = tagName;
 	}
 
+	public Tag(String tagName, String url) {
+		super();
+		this.tagName = tagName;
+		this.url = url;
+	}
+
 	public Tag(int tagId, String tagName) {
 		this.tagId = tagId;
 		this.tagName = tagName;
@@ -56,7 +63,7 @@ public class Tag implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "tag_id", unique = true, nullable = false)
 	public int getTagId() {
 		return this.tagId;

@@ -6,10 +6,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.uit.define.INewsService;
 import com.uit.define.ITagService;
@@ -25,8 +25,7 @@ public class SingleController {
 	@Autowired private INewsService newsService;
 	
 	@GetMapping("/{url}")
-	public ModelAndView single(@PathVariable(name = "url") String url) {
-		ModelAndView mv = new ModelAndView("single");
+	public String single(@PathVariable(name = "url") String url, Model model) {
 		
 		LocalDate currentDate = LocalDate.now();
 		String currentDateStr = currentDate.format(DateTimeFormatter.ofPattern("EEEE, dd - MM - yyyy"));
@@ -46,14 +45,14 @@ public class SingleController {
 		
 		SingleDto singleDto = this.newsService.getSingleByNewsId(newsId);
 		
-		mv.addObject("lastedModifiedNewses", lastestModifiedNewses);
-		mv.addObject("currentDate", currentDateStr);
-		mv.addObject("tagDtos", tagDtos);
-		mv.addObject("trendingNewes", trendingNewes);
-		mv.addObject("mostViewsNewses", mostViewsNewses1);
-		mv.addObject("mostViewsNewses1", mostViewsNewses2);
-		mv.addObject("singleDto", singleDto);
+		model.addAttribute("lastedModifiedNewses", lastestModifiedNewses);
+		model.addAttribute("currentDate", currentDateStr);
+		model.addAttribute("tagDtos", tagDtos);
+		model.addAttribute("trendingNewes", trendingNewes);
+		model.addAttribute("mostViewsNewses", mostViewsNewses1);
+		model.addAttribute("mostViewsNewses1", mostViewsNewses2);
+		model.addAttribute("singleDto", singleDto);
 		
-		return mv;
+		return "single";
 	}
 }
