@@ -112,7 +112,7 @@ public class NewsServiceImpl implements INewsService{
 
 	@Override
 	public List<SimpleNewsDto> getAllNewsesByTag(int limit, int page, String tagUrl) {
-		List<News> newses = this.newsDao.getAllNewsByTag(limit, (page-1) * limit + 1, tagUrl);
+		List<News> newses = this.newsDao.getAllNewsByTag(limit, (page-1), tagUrl);
 		return this.convertNewsesToSimpleNewsDtos(newses);
 	}
 

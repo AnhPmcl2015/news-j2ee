@@ -1,21 +1,31 @@
 package com.uit.define.impl;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import com.uit.constants.Constants;
 import com.uit.define.INewsDao;
 import com.uit.entity.News;
+import com.uit.entity.Tag;
+import com.uit.repository.NewsPagingRepository;
 import com.uit.repository.NewsRepository;
+import com.uit.repository.TagRepository;
 
 @Repository
 public class NewsDaoImpl implements INewsDao{
 
 
 	@Autowired private NewsRepository newsRepository;
+	@Autowired private NewsPagingRepository newsPagingReposity;
+	@Autowired private TagRepository tagRepository;
 	
 	@Override
 	public News findById(String id) {
@@ -101,7 +111,21 @@ public class NewsDaoImpl implements INewsDao{
 	@Override
 	public List<News> getAllNewsByTag(int limit, int page, String urlTag) {
 		
-		return this.newsRepository.findAllNewsByTag(limit, page, urlTag);
+//		return this.newsRepository.findAllNewsByTag(limit, page, urlTag);
+		Optional<Tag> tagOpt = this.tagRepository.findByUrl(urlTag);
+		
+		Tag tag = null;
+		
+		if(tagOpt.isPresent()) {
+			tag = tagOpt.get();
+		}
+		
+		Pageable pageable = PageRequest.of(page, limit, Sort.by("newsId").ascending());
+		Set<Tag> tags = new HashSet<>();
+		tags.add(tag);
+		
+		return this.newsPagingReposity.findAllByTags(tags, pageable);
+		
 	}
 
 }
