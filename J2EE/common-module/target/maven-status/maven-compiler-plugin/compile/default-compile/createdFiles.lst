@@ -1,0 +1,7 @@
+com\uit\common\base\IEntityToDto.class
+com\uit\common\base\IDtoToEntity.class
+com\uit\utils\EncrytedPasswordUtils.class
+com\uit\dto\InitialNewsDto.class
+com\uit\common\base\BaseDto.class
+com\uit\utils\WebUtils.class
+com\uit\constants\Constants.class

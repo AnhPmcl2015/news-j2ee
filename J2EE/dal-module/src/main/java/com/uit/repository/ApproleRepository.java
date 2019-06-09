@@ -1,16 +1,11 @@
 package com.uit.repository;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
-import com.uit.entity.Approle;
+import com.uit.entity.AppRole;
 
-@Repository
-public interface ApproleRepository extends JpaRepository<Approle, Integer>{
-	
+public interface AppRoleRepository extends JpaRepository<AppRole, Integer>{
+	Optional<AppRole> findByRoleName(String roleName);
 }
