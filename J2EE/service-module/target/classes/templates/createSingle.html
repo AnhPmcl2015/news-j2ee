@@ -53,38 +53,38 @@
                     <table class="table" border="0" style="width:100%">
                         <tr>
                             <td style="text-align: right">Tiêu đề bài viết: </td>
-                            <td> <input type="text" id="title" class="form-control" name="title" style="width: 100%" /></td>
+                            <td> <input type="text" id="title" class="form-control" name="title" style="width: 100%" required/></td>
                         </tr>
                         <tr>
                             <td style="text-align: right">Mô tả bài viết:</td>
-                            <td> <input type="text" id="description" class="form-control" name="description" style="width: 100%" />
+                            <td> <input type="text" id="description" class="form-control" name="description" style="width: 100%" required/>
                             </td>
                         </tr>
                         <tr>
                             <td style="text-align: right">Thể loại </td>                           
                             <td> <select id="tag"  class="form-control" name="tag">
-                            	<option th:each="tagDto: ${tagDtos}" th:value="tagDto" th:text="${tagDto.tagName}"></option>
+                            	<option th:each="tagDto: ${tagDtos}" th:value="${tagDto.tagName}" th:text="${tagDto.url}"></option>
                             </select>
                             </td>
                         </tr>
                         <tr>
                             <td style="text-align: right">Tác giả: </td>
-                            <td> <input type="text" id="author" name="author" class="form-control " style="width: 100%" />
+                            <td> <input type="text" id="author" name="author" class="form-control " style="width: 100%" required/>
                             </td>
                         </tr>
                         <tr>
                             <td style="text-align: right">Thời gian: </td>
-                            <td> <input type="text" readonly id="editDate" name="editDate" class="form-control " style="width: 100%" th:value="${currentDate}" />
+                            <td> <input type="text" readonly id="editDate" name="editDate" class="form-control " style="width: 100%" th:value="${currentDate}" required />
                             </td>
                         </tr>
                         <tr>
                         	<td> Ảnh bìa: </td>
-                        	<td> <textarea cols="50" id="thumpnail" name="thumpnail" class="form-control"></textarea></td>
+                        	<td> <textarea cols="50" id="thumpnail" name="thumpnail" class="form-control" ></textarea></td>
                         </tr>
                         <tr>
                             <td style="text-align: right">Bài viết: </td>
                             <td> <textarea rows="10" cols="50" id="content" name="content" class="form-control "
-                                    style="width: 100%"> </textarea>
+                                    style="width: 100%" > </textarea>
                             </td>
                         </tr>
                         <tr>

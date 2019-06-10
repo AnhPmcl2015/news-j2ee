@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.uit.define.ICreateSingleService;
 import com.uit.define.INewsService;
 import com.uit.define.ITagService;
 import com.uit.define.impl.NewsServiceImpl;
@@ -31,6 +32,7 @@ import com.uit.converter.CreateSingleDtoNewsConverter;
 public class CreateSingleController {
 		@Autowired private ITagService tagService;
 		
+		@Autowired private ICreateSingleService createService;
 	
 		
 		//@GetMapping(value= {"/url"})
@@ -58,21 +60,13 @@ public class CreateSingleController {
 		
 		@PostMapping("/tao-moi")
 		public ModelAndView greetingSubmit(@ModelAttribute CreateSingleDto CreateSingleDto) {
-			NewsServiceImpl service = new NewsServiceImpl();
-			System.out.println(CreateSingleDto.toString());
 			
-		
-		  LocalDate currentDate = LocalDate.now(); String currentDateStr =
-		  currentDate.format(DateTimeFormatter.ofPattern("EEEE, dd - MM - yyyy"));
-		  CreateSingleDto.setEditDate(currentDateStr);
-		  
-		  News news = new News(); CreateSingleDtoNewsConverter converter = new
-		  CreateSingleDtoNewsConverter();
-		  
-		  converter.convertDtosToEntity(news, CreateSingleDto);
-		  service.insertOrUpdate(news);
-		 
+			LocalDate currentDate = LocalDate.now();
+			String currentDateStr = currentDate.format(DateTimeFormatter.ofPattern("EEEE, dd - MM - yyyy"));
+			CreateSingleDto.setEditDate(currentDateStr);
 			
+			createService.CreateSingle(CreateSingleDto);
+						
 			return new ModelAndView("redirect:/");
 		}
 		

@@ -30,15 +30,16 @@ public class CreateSingleDtoNewsConverter implements IDtoToEntity<News, CreateSi
 		
 		//entity.setNewsId(newsId);
 		entity.setTitle(dto.getTitle());
-		AppUserDaoImpl dao = new AppUserDaoImpl();
+		//AppUserDaoImpl dao = new AppUserDaoImpl();
 		
-		AppUser appUser = dao.findById(1);
-		
-		entity.setAppUserByAuthorId(appUser);
-		entity.setAppUserByAcceptanceUserId(appUser);
-
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		LocalDateTime editDate = LocalDateTime.parse(dto.getEditDate(), formatter);
+		//AppUser appUser = dao.findById(1);
+		//AppUser appUser = userDao.findById(1);
+		//AppUser appUser2 = userDao.findAppUserByUsername("anh-pt");
+		//entity.setAppUserByAuthorId(appUser2);
+		//entity.setAppUserByAcceptanceUserId(appUser2);
+		DateTimeFormatter inputFormatter =DateTimeFormatter.ofPattern("EEEE, dd - MM - yyyy");
+		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		LocalDateTime   editDate = LocalDate.parse(dto.getEditDate(), inputFormatter).atStartOfDay();
 		entity.setEditDate(editDate);
 		
 		entity.setIsDeleted(false);
@@ -54,5 +55,8 @@ public class CreateSingleDtoNewsConverter implements IDtoToEntity<News, CreateSi
 		}
 
 		entity.setContent(dto.getContent());
+		entity.setPriorityId(0);
+		entity.setViews(0);
+		//entity.setTags(tags);
 	}
 }

@@ -5,4 +5,5 @@ import com.uit.entity.Tag;
 
 public interface ITagDao extends IBaseDao<Tag>{
 	public Tag getTagByUrl(String url);
+	
 }
