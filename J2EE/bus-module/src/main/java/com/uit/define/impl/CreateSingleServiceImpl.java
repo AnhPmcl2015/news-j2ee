@@ -35,8 +35,13 @@ public class CreateSingleServiceImpl implements ICreateSingleService{
 //		news.setTags(tagSet);
 //		//not working yet
 		
+		Tag tag = this.tagDao.getTagByUrl(dto.getTag());
 		
-		news.setNewsId(String.valueOf(Constants.defaultNewsId + newsDao.count() + 1));
+		Set<Tag> tags = new HashSet<>();
+		tags.add(tag);
+		news.setTags(tags);
+		
+		news.setNewsId(Constants.defaultNewsId + String.valueOf(newsDao.count() + 1));
 
 		newsDao.insertOrUpdate(news);
 	}

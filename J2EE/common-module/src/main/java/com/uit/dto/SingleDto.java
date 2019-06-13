@@ -15,6 +15,7 @@ public class SingleDto extends BaseDto {
 	private String thumpnail;
 	private String content;
 	private String author;
+	private String description;
 
 	public SingleDto(String id, String title, String editDate, String thumpnail, String content, String author) {
 		super();
@@ -76,6 +77,14 @@ public class SingleDto extends BaseDto {
 
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getDescription() {
+		return this.description;
 	}
 
 }

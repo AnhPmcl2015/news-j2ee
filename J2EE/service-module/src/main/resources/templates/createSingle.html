@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Tin tức 24h, tin tức mới nhất, nhanh nhất</title>
+    <title>Thêm bài viết</title>
     <link href="../static/css/media_query.css" rel="stylesheet" type="text/css"/>
     <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
@@ -63,7 +63,7 @@
                         <tr>
                             <td style="text-align: right">Thể loại </td>                           
                             <td> <select id="tag"  class="form-control" name="tag">
-                            	<option th:each="tagDto: ${tagDtos}" th:value="${tagDto.tagName}" th:text="${tagDto.url}"></option>
+                            	<option th:each="tagDto: ${tagDtos}" th:value="${tagDto.url}" th:text="${tagDto.tagName}"></option>
                             </select>
                             </td>
                         </tr>
