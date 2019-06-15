@@ -8,11 +8,15 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uit.converter.EditSingleDtoNewsConverter;
+import com.uit.converter.NewsDashboardDtoConverter;
 import com.uit.converter.SimpleNewsDtoNewsConverter;
 import com.uit.converter.SingleDtoNewsConverter;
 import com.uit.define.INewsDao;
 import com.uit.define.INewsService;
 import com.uit.define.ITagDao;
+import com.uit.dto.CreateSingleDto;
+import com.uit.dto.DashboardDto;
 import com.uit.dto.SimpleNewsDto;
 import com.uit.dto.SingleDto;
 import com.uit.entity.AppUser;
@@ -29,6 +33,10 @@ public class NewsServiceImpl implements INewsService{
 	@Autowired SimpleNewsDtoNewsConverter simpleNewsDtoNewsConverter;
 	
 	@Autowired SingleDtoNewsConverter singleDtoNewsConverter;
+	
+	@Autowired NewsDashboardDtoConverter newsDashboardDtoConverter;
+	
+	@Autowired EditSingleDtoNewsConverter editSingleDtoNewsConverter;
 
 	@Override
 	public SimpleNewsDto getPriority2News() {
@@ -94,8 +102,7 @@ public class NewsServiceImpl implements INewsService{
 
 	@Override
 	public void insertOrUpdate(News t) {
-		// TODO Auto-generated method stub
-		
+		this.newsDao.insertOrUpdate(t);
 	}
 
 	@Override
@@ -129,6 +136,14 @@ public class NewsServiceImpl implements INewsService{
 		News news = this.newsDao.findById(newsId);
 		return convertNewsToSingleDto(news);
 	}
+	
+	@Override
+	public SimpleNewsDto getSimpleNewsById(String newsId) {
+		News news = this.newsDao.findById(newsId);
+		SimpleNewsDto dto = new  SimpleNewsDto();
+		simpleNewsDtoNewsConverter.convertEntityToDto(news, dto);
+		return dto;
+	}
 
 	@Override
 	public SingleDto convertNewsToSingleDto(News news) {
@@ -140,5 +155,25 @@ public class NewsServiceImpl implements INewsService{
 		dto.setAuthor(appUser.getFullname());
 		
 		return dto;
+	}
+	
+	@Override 
+	public List<DashboardDto> getNewsToDashboard(int page){
+		List<News> newses = this.newsDao.getAllNewByPage(page);
+		List<DashboardDto> result = new ArrayList<>();
+		
+		newses.forEach(e->{
+			DashboardDto dto = new DashboardDto();
+			this.newsDashboardDtoConverter.convertEntityToDto(e, dto);
+			result.add(dto);
+		});
+		return result;
+	}
+	
+	@Override
+	public void editSingle(String newsId, CreateSingleDto dto) {
+		News news = newsDao.findById(newsId);
+		this.editSingleDtoNewsConverter.convertDtosToEntity(news,dto);
+		newsDao.insertOrUpdate(news);
 	}
 }

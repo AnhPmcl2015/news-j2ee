@@ -20,6 +20,7 @@ public class SingleDtoNewsConverter implements IEntityToDto<News, SingleDto>{
 		dto.setContent(entity.getContent());
 		dto.setEditDate(entity.getEditDate().format(DateTimeFormatter.ofPattern("EEEE, dd - MM - yyyy")));
 		dto.setThumpnail(entity.getThumpnail());
+		dto.setDescription(entity.getSummary());
 	}
 
 }

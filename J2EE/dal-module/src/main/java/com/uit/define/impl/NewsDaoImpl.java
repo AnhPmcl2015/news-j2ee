@@ -127,5 +127,47 @@ public class NewsDaoImpl implements INewsDao{
 		return this.newsPagingReposity.findAllByTags(tags, pageable);
 		
 	}
-
+	
+	@Override
+	public List<News> getAllNewByPage(int page){
+		Pageable pageable = PageRequest.of(page, 20, Sort.by("editDate").descending());		
+		return this.newsPagingReposity.findAllByIsDeletedFalse(pageable).getContent();
+	}
+	
+	@Override
+	public void deleteNewsById(String id) {
+		this.newsRepository.deleteNewsById(id);
+	}
+	
+	@Override
+	public void editTrendingById(String id) {
+		News news = this.newsRepository.findById(id).get();
+		boolean isTrending = news.getIsTrending();
+		
+		if (isTrending)
+			news.setIsTrending(false);
+		else
+			news.setIsTrending(true);
+		
+		this.insertOrUpdate(news);
+	}
+	
+	@Override
+	public void editHighestPriority(String id) {
+		News news = this.newsRepository.findById(id).get();
+ 
+		News currentHighestPriorityNews = this.newsRepository.findHighestPriorityNews();
+		
+		currentHighestPriorityNews.setPriorityId(0);
+		news.setPriorityId(2);
+		this.insertOrUpdate(currentHighestPriorityNews);
+		this.insertOrUpdate(news);
+	}
+	
+	@Override
+	public void editPriority(String id, String priority) {
+		News news = this.newsRepository.findById(id).get();
+		news.setPriorityId(Integer.parseInt(priority));
+		this.insertOrUpdate(news);
+	}
 }

@@ -1,11 +1,14 @@
 package com.uit.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.uit.entity.News;
 
@@ -28,4 +31,12 @@ public interface NewsRepository extends JpaRepository<News, String>{
 	@Query(value = "select a.* from news as a left join tag_news as b on a.news_id = b.news_id\r\n" + 
 			"left join tag as c on b.tag_id = c.tag_id where c.url = :tagUrl order by a.news_id limit :limit offset :offSet", nativeQuery = true)
 	List<News> findAllNewsByTag(@Param("limit") int limit, @Param("offSet") int offSet, @Param("tagUrl") String tagUrl);
+	
+	@Modifying
+	@Transactional 
+	@Query("update News set isDeleted = 1 where newsId = :newsId")
+	void deleteNewsById(@Param("newsId") String newsId);
+	
+	@Query(value = "select * from news where priority_id = 2 and is_deleted = 0", nativeQuery = true)
+	News findHighestPriorityNews();
 }
