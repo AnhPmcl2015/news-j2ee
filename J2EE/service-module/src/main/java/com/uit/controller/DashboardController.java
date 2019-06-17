@@ -20,6 +20,7 @@ import com.uit.define.INewsService;
 import com.uit.dto.DashboardDto;
 
 @Controller
+@RequestMapping("/admin")
 public class DashboardController {
 	
 	@Autowired private INewsService newsService;

@@ -29,6 +29,7 @@ import com.uit.entity.News;
 import com.uit.converter.CreateSingleDtoNewsConverter;
 
 @Controller
+@RequestMapping("/admin")
 public class CreateSingleController {
 		@Autowired private ITagService tagService;
 		

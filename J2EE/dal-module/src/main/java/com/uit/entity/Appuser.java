@@ -85,7 +85,7 @@ public class AppUser implements java.io.Serializable {
 		this.userId = userId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "role_id", nullable = false)
 	public AppRole getAppRole() {
 		return this.appRole;

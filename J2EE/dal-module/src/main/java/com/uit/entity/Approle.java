@@ -78,7 +78,7 @@ public class AppRole implements java.io.Serializable {
 		this.roleName = roleName;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "appRole")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "appRole")
 	public Set<AppUser> getAppUsers() {
 		return this.appUsers;
 	}

@@ -39,11 +39,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		 
         // Các trang không yêu cầu login
-        http.authorizeRequests().antMatchers("/tin-tuc", "/login", "/logout", "/admin").permitAll();
+        http.authorizeRequests().antMatchers("/tin-tuc", "/login", "/logout").permitAll();
 
  
         // Trang chỉ dành cho ADMIN
-//        http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/*").access("hasRole('ROLE_ADMIN')");
  
         // Khi người dùng đã login, với vai trò XX.
         // Nhưng truy cập vào trang yêu cầu vai trò YY,
@@ -55,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Submit URL của trang login
                 .loginProcessingUrl("/j_spring_security_check") // Submit URL
                 .loginPage("/login")//
-                .defaultSuccessUrl("/userInfo")//
+                .defaultSuccessUrl("/admin/dashboard")//
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//
                 .passwordParameter("password")

@@ -25,6 +25,7 @@ import com.uit.dto.TagDto;
 import com.uit.entity.News;
 
 @Controller
+@RequestMapping("/admin")
 public class EditSingleController {
 	@Autowired private ITagService tagService;
 	@Autowired private INewsService newsService;
