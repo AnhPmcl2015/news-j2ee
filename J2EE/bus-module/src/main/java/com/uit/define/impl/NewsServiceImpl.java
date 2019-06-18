@@ -134,6 +134,8 @@ public class NewsServiceImpl implements INewsService{
 	@Override
 	public SingleDto getSingleByNewsId(String newsId) {
 		News news = this.newsDao.findById(newsId);
+		news.setViews(news.getViews() + 1);
+		this.newsDao.insertOrUpdate(news);
 		return convertNewsToSingleDto(news);
 	}
 	

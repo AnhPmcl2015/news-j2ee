@@ -57,7 +57,7 @@ public class DashboardController {
 		String id = strHandle.substring(3);
 		switch (func) {
 		case "edt":{
-			return new ModelAndView("redirect:/chinh-sua-bai-viet","modelMap", id);
+			return new ModelAndView("redirect:/admin/chinh-sua-bai-viet","modelMap", id);
 		}
 		case "del":{
 			dashboardService.handleDelete(id);
@@ -70,15 +70,15 @@ public class DashboardController {
 		}; break;
 		case "bck": {
 			int noPage = Integer.parseInt(id) - 1;
-			return new ModelAndView("redirect:/dashboard","page", noPage);
+			return new ModelAndView("redirect:/admin/dashboard","page", noPage);
 		}
 		case "nex": {
 			int noPage = Integer.parseInt(id) + 1;
-			return new ModelAndView("redirect:/dashboard","page", noPage);
+			return new ModelAndView("redirect:/admin/dashboard","page", noPage);
 		}
 		default:{
 		}break;
 		}
-		return new ModelAndView("redirect:/dashboard");
+		return new ModelAndView("redirect:/admin/dashboard");
 	}
 }

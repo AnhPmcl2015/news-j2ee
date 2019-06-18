@@ -61,7 +61,7 @@ public class InitialData implements IInitialData {
 		}
 
 		AppRole role1 = new AppRole(1, "EDITOR");
-		AppRole role2 = new AppRole(2, "ADMIN");
+		AppRole role2 = new AppRole(2, "ROLE_ADMIN");
 
 		appRoleDaoImpl.insertOrUpdate(role1);
 		appRoleDaoImpl.insertOrUpdate(role2);

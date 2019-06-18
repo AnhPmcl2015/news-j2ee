@@ -110,9 +110,9 @@ input:checked + .slider:before {
   								<span class="slider"></span>
 								</label>
                             </td>
-                            <td> <form th:action="@{/dashboard}"  th:object="${strHandle}" method='Post'><input type="submit" class="form-control btn btn-danger" value="Xóa">
+                            <td> <form th:action="@{/admin/dashboard}"  th:object="${strHandle}" method='Post'><input type="submit" class="form-control btn btn-danger" value="Xóa">
                             		<input type="hidden"  name="strHandle" th:value="${'del' + news.id}"/></form></td>
-                            <td> <form th:action="@{/dashboard}" th:object="${strHandle}" method='Post'><input type="submit" class="form-control btn btn-info" value="Sửa"/>
+                            <td> <form th:action="@{/admin/dashboard}" th:object="${strHandle}" method='Post'><input type="submit" class="form-control btn btn-info" value="Sửa"/>
                             		<input type="hidden" name="strHandle" th:value="${'edt'+ news.id}"/></form></td>
                             <td th:text="${news.link}"></td>
                             <td th:text="${news.views}"></td>
@@ -132,7 +132,7 @@ input:checked + .slider:before {
         	function chkFunction(id){
         		var f = document.createElement("form");
         		f.setAttribute('method',"post");
-        		f.setAttribute('action',"/dashboard");
+        		f.setAttribute('action',"/admin/dashboard");
         		f.setAttribute('id',"editTrendingForm");
         		
         		var input = document.createElement("input");
@@ -154,7 +154,7 @@ input:checked + .slider:before {
         		}else {
             		var f = document.createElement("form");
             		f.setAttribute('method',"post");
-            		f.setAttribute('action',"/dashboard");
+            		f.setAttribute('action',"/admin/dashboard");
             		f.setAttribute('id',"editPriorityForm");
             		
             		var input = document.createElement("input");
