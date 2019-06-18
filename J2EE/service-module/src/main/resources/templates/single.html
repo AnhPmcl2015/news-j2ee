@@ -50,7 +50,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-3 fh5co_padding_menu">
-                <img src="../static/images/logo.png" alt="img" class="fh5co_logo_width"/>
+                <img th:src="@{/static/images/logo.png}" alt="img" class="fh5co_logo_width"/>
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@
             <button class="navbar-toggler navbar-toggler-right mt-3" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
-            <a class="navbar-brand" href="#"><img src="images/logo.png" alt="img" class="mobile_logo_width"/></a>
+            <a class="navbar-brand" th:href="@{/}"><img th:src="@{/static/images/logo.png}" alt="img" class="mobile_logo_width"/></a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <!-- <li class="nav-item active">
@@ -187,7 +187,7 @@
 <div class="container-fluid fh5co_footer_bg pb-3">
     <div class="container animate-box">
         <div class="row">
-            <div class="col-12 spdp_right py-5"><img src="../static/images/white_logo.png" alt="img" class="footer_logo"/></div>
+            <div class="col-12 spdp_right py-5"><img th:src="@{/static/images/white_logo.png}" alt="img" class="footer_logo"/></div>
             <div class="clearfix"></div>
             <div class="col-12 col-md-4 col-lg-3">
                 <div class="footer_main_title py-3"> About</div>
@@ -224,7 +224,7 @@
                     <a th:href="@{|/tin-tuc/bai-viet/${mostViewsNewses.url}|}" class="footer_post pb-4" th:utext="${mostViewsNewses.title}"> Success is not a good teacher failure makes you humble </a>
                 </div>
                 
-                <div class="footer_position_absolute"><img src="../static/images/footer_sub_tipik.png" alt="img" class="width_footer_sub_img"/></div>
+                <div class="footer_position_absolute"><img th:src="@{/static/images/footer_sub_tipik.png}" alt="img" class="width_footer_sub_img"/></div>
             </div>
             <div class="col-12 col-md-12 col-lg-4 ">
                 <div class="footer_main_title py-3"> Bài viết chỉnh sửa gần đây</div>
