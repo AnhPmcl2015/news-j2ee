@@ -58,6 +58,6 @@ public class EditSingleController {
 		
 		newsService.editSingle(currentNewsId, model);
 		
-		return new ModelAndView("redirect:/dashboard");
+		return new ModelAndView("redirect:/admin/dashboard");
 	}
 }
